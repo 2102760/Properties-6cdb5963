@@ -2,12 +2,13 @@
 
 class MyLogger
 {
+    public $origin = 'not set';
     public function log($message, $type)
     {
         switch ($type) {
             case 'error':
                 $this->error($message);
-                break;
+                
             case 'debug':
                 $this->debug($message);
                 break;
@@ -22,6 +23,10 @@ class MyLogger
         }
     }
 
+    public function setOrigin($origin) {
+        $this->origin = $origin;
+    }
+
     public function error($message)
     {
         $this->logWithTime('Error: ' . $message);
@@ -30,7 +35,7 @@ class MyLogger
     private function logWithTime($type, $message)
     {
         $date = date('Y-m-d H:i:s');
-        echo('[' . $date . '] ' . $type . ': ' . $message);
+        echo('[' . $date . '] ' . $this->origin . ' - ' . $type . ': ' . $message);
     }
 
     public function debug($message)

@@ -3,12 +3,13 @@
 class MyLogger
 {
     public $origin = 'not set';
+
     public function log($message, $type)
     {
         switch ($type) {
             case 'error':
                 $this->error($message);
-                
+                break;
             case 'debug':
                 $this->debug($message);
                 break;
@@ -21,10 +22,6 @@ class MyLogger
             default:
                 echo('unknown log type');
         }
-    }
-
-    public function setOrigin($origin) {
-        $this->origin = $origin;
     }
 
     public function error($message)
@@ -51,6 +48,11 @@ class MyLogger
     public function warning($message)
     {
         $this->logWithTime('warning', $message);
+    }
+
+    public function setOrigin($origin)
+    {
+        $this->origin = $origin;
     }
 }
 
